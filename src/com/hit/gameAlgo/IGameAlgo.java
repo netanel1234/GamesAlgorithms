@@ -13,16 +13,6 @@ public interface IGameAlgo {
 	public static enum GameState
 	{
 		ILLEGAL_PLAYER_MOVE, IN_PROGRESS, PLAYER_LOST, PLAYER_WON, TIE; 
-		
-		public static IGameAlgo.GameState[] values()
-		{
-			
-		}
-		
-		public static IGameAlgo.GameState valueOf(String name)
-		{
-			
-		}
 	}
 
 }
