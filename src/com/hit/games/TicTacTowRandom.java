@@ -7,6 +7,7 @@ public class TicTacTowRandom extends TicTacTow {
 		super(r, c);
 	}
 
+	//calcComputerMove Calculates the copmuter's move and updates the game board
 	@Override
 	public void calcComputerMove() 
 	{
