@@ -5,7 +5,7 @@ import com.hit.gameAlgo.IGameAlgo;
 
 public abstract class TicTacTow extends GameBoard {
 	
-	GameState gameState;
+	public GameState gameState;
 
 	public TicTacTow(int r, int c) 
 	{
@@ -92,7 +92,6 @@ public abstract class TicTacTow extends GameBoard {
 		return false;
 	}
 	
-	//updatePlayerMove Updates the player's move on the board. in case the move is not legal - nothing is done.
 	public boolean updatePlayerMove(GameMove move)
 	{
 		if(board[move.getRow()][move.getCol()]!='b')
@@ -102,7 +101,7 @@ public abstract class TicTacTow extends GameBoard {
 		}
 		else
 		{
-			board[move.getRow()][move.getCol()]='b';
+			board[move.getRow()][move.getCol()]='p';
 			return true;
 		}
 	}
