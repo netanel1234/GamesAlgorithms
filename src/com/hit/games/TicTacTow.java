@@ -45,8 +45,6 @@ public abstract class TicTacTow extends GameBoard {
 		{
 			if(checkPlayerWin())
 				gameState=GameState.PLAYER_WON;
-			else if(checkPlayerLost())
-				gameState=GameState.PLAYER_LOST;
 			else if(checkTie())
 				gameState=GameState.TIE;
 		}
@@ -63,21 +61,6 @@ public abstract class TicTacTow extends GameBoard {
 				board[0][2]=='p' && board[1][2]=='p' && board[2][2]=='p' ||
 				board[0][0]=='p' && board[1][1]=='p' && board[2][2]=='p' ||
 				board[0][2]=='p' && board[1][1]=='p' && board[2][0]=='p'     )
-			return true;
-		
-		return false;
-	}
-	
-	public boolean checkPlayerLost()
-	{
-		if(		board[0][0]=='c' && board[0][1]=='c' && board[0][2]=='c' || 
-				board[1][0]=='c' && board[1][1]=='c' && board[1][2]=='c' ||
-				board[2][0]=='c' && board[2][1]=='c' && board[2][2]=='c' ||
-				board[0][0]=='c' && board[1][0]=='c' && board[2][0]=='c' ||
-				board[0][1]=='c' && board[1][1]=='c' && board[2][1]=='c' ||
-				board[0][2]=='c' && board[1][2]=='c' && board[2][2]=='c' ||
-				board[0][0]=='c' && board[1][1]=='c' && board[2][2]=='c' ||
-				board[0][2]=='c' && board[1][1]=='c' && board[2][0]=='c'     )
 			return true;
 		
 		return false;

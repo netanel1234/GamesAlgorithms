@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.hit.gameAlgo.IGameAlgo.GameState;
+
 public class TicTacTowRandom extends TicTacTow {
 
 	public TicTacTowRandom(int r, int c) 
@@ -26,7 +28,6 @@ public class TicTacTowRandom extends TicTacTow {
 				place++;
 			}
 		}
-		System.out.println("this is the list of blank cells. in cacComputerMove--"+list);
 		place=0;
 		newPlace=getRandomElement(list);
 		for(int i=0;i<3;i++)
@@ -38,6 +39,24 @@ public class TicTacTowRandom extends TicTacTow {
 				place++;
 			}
 		}
+
+		if(checkPlayerLost())
+			gameState=GameState.PLAYER_LOST;
+	}
+	
+	public boolean checkPlayerLost()
+	{
+		if(		board[0][0]=='c' && board[0][1]=='c' && board[0][2]=='c' || 
+				board[1][0]=='c' && board[1][1]=='c' && board[1][2]=='c' ||
+				board[2][0]=='c' && board[2][1]=='c' && board[2][2]=='c' ||
+				board[0][0]=='c' && board[1][0]=='c' && board[2][0]=='c' ||
+				board[0][1]=='c' && board[1][1]=='c' && board[2][1]=='c' ||
+				board[0][2]=='c' && board[1][2]=='c' && board[2][2]=='c' ||
+				board[0][0]=='c' && board[1][1]=='c' && board[2][2]=='c' ||
+				board[0][2]=='c' && board[1][1]=='c' && board[2][0]=='c'     )
+			return true;
+		
+		return false;
 	}
 	
 	public int getRandomElement(List<Integer> list)
