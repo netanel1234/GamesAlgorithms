@@ -27,15 +27,13 @@ public class CatchTheBunnyRandom extends CatchTheBunny {
 			}
 		}
 		
-		//rand the computer move.
 		Random rand=new Random();
 		int computerMove=rand.nextInt(4);
 		
-		public boolean legalMove=false;
+		boolean legalMove=false;
 		while(!legalMove)
 		{
-			findMove(computerMove, x, y);
-			
+			legalMove=findMove(computerMove, x, y);
 		}
 	}
 	
@@ -54,7 +52,7 @@ public class CatchTheBunnyRandom extends CatchTheBunny {
 					board[x][y]='b';
 					gameState=GameState.PLAYER_WON;
 				}
-				legalMove=true;
+				return true;
 			}
 			catch(ArrayIndexOutOfBoundsException e) {}
 		}
@@ -71,6 +69,7 @@ public class CatchTheBunnyRandom extends CatchTheBunny {
 					board[x][y]='b';
 					gameState=GameState.PLAYER_WON;
 				}
+				return true;
 			}
 			catch(ArrayIndexOutOfBoundsException e) {}
 		}
@@ -87,6 +86,7 @@ public class CatchTheBunnyRandom extends CatchTheBunny {
 					board[x][y]='b';
 					gameState=GameState.PLAYER_WON;
 				}
+				return true;
 			}
 			catch(ArrayIndexOutOfBoundsException e) {}
 		}
@@ -103,9 +103,11 @@ public class CatchTheBunnyRandom extends CatchTheBunny {
 					board[x][y]='b';
 					gameState=GameState.PLAYER_WON;
 				}
+				return true;
 			}
 			catch(ArrayIndexOutOfBoundsException e) {}
 		}
+		
 		return false;
 	}
 
