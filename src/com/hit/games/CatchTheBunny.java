@@ -6,10 +6,12 @@ import com.hit.gameAlgo.IGameAlgo.GameState;
 public abstract class CatchTheBunny extends GameBoard {
 	
 	public GameState gameState;
+	public int countPlayerMoves=0; 
 
 	public CatchTheBunny(int r, int c) 
 	{
 		super(r, c);
+		
 		for(int i=0;i<r;i++)
 		{
 			for(int j=0;j<c;j++) 
@@ -45,13 +47,17 @@ public abstract class CatchTheBunny extends GameBoard {
 		gameState=GameState.IN_PROGRESS;
 		if(updatePlayerMove(move))
 		{
-			
+			countPlayerMoves++;
+			if(countPlayerMoves>15)
+				gameState=GameState.PLAYER_LOST;
 		}
-		
+		else
+		{
+			gameState=GameState.ILLEGAL_PLAYER_MOVE;
+		}
 		
 		return gameState;
 	}
-	
 	
 	//updatePlayerMove Updates the player's move on the board. in case the move is not legal - nothing is done
 	//Returns: true if the move is legal and false otherwise
@@ -61,47 +67,56 @@ public abstract class CatchTheBunny extends GameBoard {
 			return false;
 		
 		try {
-			if(board[move.getRow()+1][move.getCol()]=='p')
+			if(board[move.getRow()+1][move.getCol()]=='p')//if the player chooses to move down.
 			{
-				board[move.getRow()+1][move.getCol()]='p';
-				board[move.getRow()][move.getCol()]='b';
+				board[move.getRow()+1][move.getCol()]='b';
+				if(board[move.getRow()][move.getCol()]=='c')
+					gameState=GameState.PLAYER_WON;
+				board[move.getRow()][move.getCol()]='p';
 				return true;
 			}
 		}
-		catch(ArrayIndexOutOfBoundsException e) {
+		catch(ArrayIndexOutOfBoundsException e) {}
+		finally {
 			try {
-				if(board[move.getRow()][move.getCol()+1]=='p')
+				if(board[move.getRow()][move.getCol()+1]=='p')//if the player chooses to move left.
 				{
-					board[move.getRow()][move.getCol()+1]='p';
-					board[move.getRow()][move.getCol()]='b';
+					board[move.getRow()][move.getCol()+1]='b';
+					if(board[move.getRow()][move.getCol()]=='c')
+						gameState=GameState.PLAYER_WON;
+					board[move.getRow()][move.getCol()]='p';
 					return true;
 				}
 			}
-			catch(ArrayIndexOutOfBoundsException ee) {
+			catch(ArrayIndexOutOfBoundsException ee) {}
+			finally {
 				try {
-					if(board[move.getRow()][move.getCol()-1]=='p')
+					if(board[move.getRow()][move.getCol()-1]=='p')//if the player chooses to move right.
 					{
-						board[move.getRow()][move.getCol()-1]='p';
-						board[move.getRow()][move.getCol()]='b';
+						board[move.getRow()][move.getCol()-1]='b';
+						if(board[move.getRow()][move.getCol()]=='c')
+							gameState=GameState.PLAYER_WON;
+						board[move.getRow()][move.getCol()]='p';
 						return true;
 					}
 				}
-				catch(ArrayIndexOutOfBoundsException eee) {
+				catch(ArrayIndexOutOfBoundsException eee) {}
+				finally {
 					try {
-						if(board[move.getRow()-1][move.getCol()]=='p')
+						if(board[move.getRow()-1][move.getCol()]=='p')//if the player chooses to move up.
 						{
-							board[move.getRow()-1][move.getCol()]='p';
-							board[move.getRow()][move.getCol()]='b';
+							board[move.getRow()-1][move.getCol()]='b';
+							if(board[move.getRow()][move.getCol()]=='c')
+								gameState=GameState.PLAYER_WON;
+							board[move.getRow()][move.getCol()]='p';
 							return true;
 						}
 					}
-					catch(ArrayIndexOutOfBoundsException eeee) {
-						
-					}
+					catch(ArrayIndexOutOfBoundsException eeee) {}
 				}
 			}
 		}
-		
+			
 		return false;
 	}
 	
