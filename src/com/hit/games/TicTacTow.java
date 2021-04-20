@@ -1,3 +1,9 @@
+/*
+ * NOTE: The method getGameState does not return the state PLAYER_LOST. 
+ * Therefore, we may need to check the game state (by gameState) after every
+ * operation of the method calcComputerMove.
+ */
+
 package com.hit.games;
 
 import com.hit.gameAlgo.GameBoard;

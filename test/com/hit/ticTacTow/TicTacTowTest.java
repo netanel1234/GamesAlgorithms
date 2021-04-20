@@ -63,8 +63,24 @@ class TicTacTowTest {
 	@Test
 	void playerLostTest()
 	{
+		System.out.println("playerLostTest");
+		System.out.println();
 		
+		/*---Random---*/
+		random.calcComputerMove();
+		random.calcComputerMove();
+		random.calcComputerMove();
+		random.calcComputerMove();
+		random.calcComputerMove();
+		assertEquals(GameState.PLAYER_LOST,random.gameState);
 
+		/*---Smart---*/
+		smart.calcComputerMove();
+		smart.calcComputerMove();
+		smart.calcComputerMove();
+		smart.calcComputerMove();
+		smart.calcComputerMove();
+		assertEquals(GameState.PLAYER_LOST,smart.gameState);
 
 	}
 	
@@ -74,31 +90,29 @@ class TicTacTowTest {
 		System.out.println("tieGameTest");
 		System.out.println();
 		
+		/*---Random---*/
+		assertEquals(GameState.IN_PROGRESS,random.getGameState(new GameMove(0,0)));
+		assertEquals(GameState.IN_PROGRESS,random.getGameState(new GameMove(1,1)));
+		assertEquals(GameState.IN_PROGRESS,random.getGameState(new GameMove(2,0)));
+		assertEquals(GameState.IN_PROGRESS,random.getGameState(new GameMove(1,2)));
+		random.board[0][1]='c';
+		random.board[0][2]='c';
+		random.board[1][0]='c';
+		random.board[2][2]='c';
+		assertEquals(GameState.TIE,random.getGameState(new GameMove(2,1)));
+		random.printBoard();
+		
+		/*---Smart---*/
 		assertEquals(GameState.IN_PROGRESS,smart.getGameState(new GameMove(0,0)));
 		assertEquals(GameState.IN_PROGRESS,smart.getGameState(new GameMove(1,1)));
 		assertEquals(GameState.IN_PROGRESS,smart.getGameState(new GameMove(2,0)));
 		assertEquals(GameState.IN_PROGRESS,smart.getGameState(new GameMove(1,2)));
-		random.calcComputerMove();
-		random.calcComputerMove();
-		random.calcComputerMove();
-		random.calcComputerMove();
-		//find the last place he is blank.
-		int x=0,y=0;
-		for(int i=0;i<random.row;i++)
-		{
-			for(int j=0;j<random.col;j++)
-			{
-				if(random.board[i][j]=='b')
-				{
-					x=i;
-					y=j;
-				}
-			}
-		}
-		random.printBoard();
-		System.out.println("x="+x+" y="+y);
-		assertEquals(GameState.IN_PROGRESS,smart.getGameState(new GameMove(x,y)));
-		random.printBoard();
+		smart.board[0][1]='c';
+		smart.board[0][2]='c';
+		smart.board[1][0]='c';
+		smart.board[2][2]='c';
+		assertEquals(GameState.TIE,smart.getGameState(new GameMove(2,1)));
+		smart.printBoard();
 	}
 	
 	@Test
@@ -111,6 +125,15 @@ class TicTacTowTest {
 		assertEquals(GameState.IN_PROGRESS,random.getGameState(new GameMove(0,0)));
 		random.printBoard();
 		assertEquals(GameState.ILLEGAL_PLAYER_MOVE,random.getGameState(new GameMove(0,0)));
+		random.board[0][1]='c';
+		assertEquals(GameState.ILLEGAL_PLAYER_MOVE,random.getGameState(new GameMove(0,1)));
+		
+		/*---Smart---*/
+		assertEquals(GameState.IN_PROGRESS,smart.getGameState(new GameMove(0,0)));
+		smart.printBoard();
+		assertEquals(GameState.ILLEGAL_PLAYER_MOVE,smart.getGameState(new GameMove(0,0)));
+		smart.board[0][1]='c';
+		assertEquals(GameState.ILLEGAL_PLAYER_MOVE,smart.getGameState(new GameMove(0,1)));
 
 	}
 	
