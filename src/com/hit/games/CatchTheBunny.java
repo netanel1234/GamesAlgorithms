@@ -127,8 +127,10 @@ public abstract class CatchTheBunny extends GameBoard {
 	
 	public void printBoard()
 	{
+		System.out.println("  0 1 2 3 4 5 6 7 8");
 		for(int i=0;i<row;i++)
 		{
+			System.out.print(i+" ");
 			for(int j=0;j<col;j++)
 			{
 				System.out.print(board[i][j]+" ");

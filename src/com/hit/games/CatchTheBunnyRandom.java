@@ -34,6 +34,7 @@ public class CatchTheBunnyRandom extends CatchTheBunny {
 		while(!legalMove)
 		{
 			legalMove=findMove(computerMove, x, y);
+			computerMove=rand.nextInt(4);
 		}
 	}
 	
