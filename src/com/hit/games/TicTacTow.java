@@ -100,6 +100,11 @@ public abstract class TicTacTow extends GameBoard {
 		return board;
 	}
 	
+	public GameState getMemberGameState() 
+	{
+		return gameState;
+	}
+	
 	public void printBoard()
 	{
 		for(int i=0;i<row;i++)

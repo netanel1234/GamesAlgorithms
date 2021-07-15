@@ -139,6 +139,14 @@ public abstract class CatchTheBunny extends GameBoard {
 		}
 		System.out.println();
 	}
+
+	public GameState getMemberGameState() {
+		return gameState;
+	}
+
+	public int getCountPlayerMoves() {
+		return countPlayerMoves;
+	}
 	
 	
 }

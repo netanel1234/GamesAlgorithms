@@ -70,5 +70,4 @@ public class TicTacTowRandom extends TicTacTow {
 		return super.updatePlayerMove(move);
 	}
 	
-
 }

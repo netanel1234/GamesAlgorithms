@@ -1,5 +1,9 @@
 package com.hit.gameAlgo;
 
+
+/*
+ * This is an abstract class that implements the interface IGameAlgo.
+ */
 public abstract class GameBoard implements IGameAlgo {
 	
 	public int row;
@@ -43,4 +47,5 @@ public abstract class GameBoard implements IGameAlgo {
 		}
 	}
 	
+	public abstract GameState getMemberGameState();
 }
